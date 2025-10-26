@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>乖乖</title>
+    <style>
+        body {
+            font-family: "微软雅黑", sans-serif;
+            background-color: #fce4ec;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            background-color: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #e91e63;
+            margin-bottom: 10px;
+        }
+        .question {
+            font-size: 28px;
+            color: #333;
+            margin: 20px 0;
+        }
+        .image-container {
+            margin: 20px 0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+        .buttons {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 18px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        #loveBtn {
+            background-color: #e91e63;
+            color: white;
+        }
+        #loveBtn:hover {
+            background-color: #c2185b;
+            transform: scale(1.05);
+        }
+        #noLoveBtn {
+            background-color: #607d8b;
+            color: white;
+            position: relative;
+        }
+        #noLoveBtn:hover {
+            background-color: #455a64;
+            transform: scale(1.05);
+        }
+        /* 弹窗样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 90%;
+            width: 400px;
+        }
+        .modal h2 {
+            color: #e91e63;
+            margin-top: 0;
+        }
+        .modal button {
+            margin-top: 20px;
+            background-color: #e91e63;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>hey!</h1>
+        <div class="question">我是不是很帅？</div>
+        <div class="image-container">
+        <p style="color: aqua;">点我有惊喜</p>    
+        <a href="https://www.bilibili.com/video/BV1VXW3e6Ejn/?spm_id_from=333.337.search-card.all.click&vd_source=6d8abb5f5134085cf99097015e189374"><img src="http://i0.hdslb.com/bfs/new_dyn/a121304afba25eea0199d6b435e10f33651479234.jpg" alt="傻子"></img></a>
+        </div>
+        <div class="buttons">
+            <button id="loveBtn">像猩猩</button>
+            <button id="noLoveBtn">哇去 宇宙无敌第一帅</button>
+        </div>
+    </div>
+
+    <!-- 第一个按钮的弹窗 -->
+    <div class="modal" id="loveModal">
+        <div class="modal-content">
+            <h2>被你发现了</h2>
+<p><img src="https://ts4.tc.mm.bing.net/th/id/OIP-C.yMuBzHNQKfjPiwpezIxGIAHaFb?rs=1&pid=ImgDetMain&o=7&rm=3" alt="帅哥" width="330" height="330"></a></p>
+            <p>让我亲热亲热~</p>
+            <button id="confirmBtn">快跑</button>
+        </div>
+    </div>
+
+    <!-- 第二个按钮 -->
+    <div class="modal" id="noLoveModal">
+        <div class="modal-content">
+            <h2>让我亲热亲热</h2>
+            <p><img src="http://i0.hdslb.com/bfs/new_dyn/c95fc8cfe82af276c89a310472fb109e651479234.jpg" alt="爱你"></p>
+            <p style="color: #c2185b;">不要啊昇哥</p>
+            <button id="reconsiderBtn">我重生了</button>
+        </div>
+    </div>
+
+    <script>
+        // 获取元素
+        const loveBtn = document.getElementById('loveBtn');
+        const noLoveBtn = document.getElementById('noLoveBtn');
+        const loveModal = document.getElementById('loveModal');
+        const noLoveModal = document.getElementById('noLoveModal');
+        const confirmBtn = document.getElementById('confirmBtn');
+        const reconsiderBtn = document.getElementById('reconsiderBtn');
+
+        // 禁止关闭页面
+        window.addEventListener('beforeunload', function(e) {
+            e.preventDefault();
+            e.returnValue = '你跑不掉的';
+            alert('你跑不掉的');
+            return e.returnValue;
+        });
+
+        // 点击第一个
+        loveBtn.addEventListener('click', function() {
+            loveModal.style.display = 'flex';
+        });
+
+        // 点击第二个
+        noLoveBtn.addEventListener('click', function() {
+            noLoveModal.style.display = 'flex';
+        });
+
+        // 第一个按钮
+        confirmBtn.addEventListener('click', function() {
+            // 关闭所有弹窗并刷新页面（或跳转到新页面）
+            loveModal.style.display = 'none';
+            alert('退出');
+            window.location.href = "https://www.bilibili.com/video/BV1VXW3e6Ejn/?spm_id_from=333.337.search-card.all.click&vd_source=6d8abb5f5134085cf99097015e189374"; 
+            // 可以在这里添加跳转逻辑，比如 window.location.href = "新页面地址";
+        });
+
+        // 第二个按钮
+        reconsiderBtn.addEventListener('click', function() {
+            noLoveModal.style.display = 'none';
+        });
+
+        // 不允许关闭不叫的弹窗（点击关闭按钮时重新打开）
+        noLoveModal.addEventListener('click', function(e) {
+            if (e.target === noLoveModal) {
+                noLoveModal.style.display = 'none';
+                // 延迟重新打开，制造"关不掉"的效果
+                setTimeout(() => {
+                    noLoveModal.style.display = 'flex';
+                }, 100);
+            }
+        });
+
+        // 让"不叫"按钮有点调皮的效果（鼠标移近时轻微移动）
+        noLoveBtn.addEventListener('mouseover', function() {
+            const x = Math.random() * 20; // -10到10之间的随机数
+            const y = Math.random() * 20 -30 ;
+            this.style.transform = `translate(${x}px, ${y}px)`;
+        });
+
+        noLoveBtn.addEventListener('mouseout', function() {
+            this.style.transform = 'translate(0, 0)';
+        });
+    </script>
+</body>
+</html>
